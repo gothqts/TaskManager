@@ -1,5 +1,5 @@
 const urls = {
     main: '/',
-    task: '/task/:id'
+    task: '/task/:id',
 }
-export default urls;
+export default urls

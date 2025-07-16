@@ -1,7 +1,7 @@
-import styles from './filterPanel.module.css';
-import {Select} from "antd";
-import {categoryOptions, priorityOptions, statusOptions} from "../../../../shared/constants.ts";
-import type {IFilters} from "../../../../types/global.ts";
+import styles from './filterPanel.module.css'
+import { Select } from 'antd'
+import { categoryOptions, priorityOptions, statusOptions } from 'shared/constants'
+import { IFilters } from 'types/global'
 
 
 interface FilterPanelProps {
@@ -9,18 +9,18 @@ interface FilterPanelProps {
     onChange: (value: string, name: keyof IFilters) => void,
 }
 
-const FilterPanel = ({filters, onChange}: FilterPanelProps) => {
+const FilterPanel = ({ filters, onChange }: FilterPanelProps) => {
     return (
         <div className={styles.container}>
             <div className={styles.selectContainer}>
                 <label className={styles.label}
-                       htmlFor='filterStatus'>Статус:</label>
+                       htmlFor="filterStatus">Статус:</label>
                 <Select
-                    id='filterStatus'
+                    id="filterStatus"
                     className={styles.select}
                     options={[
-                        {value: '', label: 'Все'},
-                        ...statusOptions
+                        { value: '', label: 'Все' },
+                        ...statusOptions,
                     ]}
                     value={filters.status.value}
                     onChange={(value) => onChange(value, 'status')}
@@ -30,13 +30,13 @@ const FilterPanel = ({filters, onChange}: FilterPanelProps) => {
             <div className={styles.selectContainer}>
                 <label
                     className={styles.label}
-                    htmlFor='filterPriority'>Приоритет:</label>
+                    htmlFor="filterPriority">Приоритет:</label>
                 <Select
-                    id='filterPriority'
+                    id="filterPriority"
                     className={styles.select}
                     options={[
-                        {value: '', label: 'Все'},
-                        ...priorityOptions
+                        { value: '', label: 'Все' },
+                        ...priorityOptions,
                     ]}
                     value={filters.priority.value}
                     onChange={(value) => onChange(value, 'priority')}
@@ -46,22 +46,22 @@ const FilterPanel = ({filters, onChange}: FilterPanelProps) => {
             <div className={styles.selectContainer}>
                 <label
                     className={styles.label}
-                    htmlFor='filterCategories'>Категория:</label>
+                    htmlFor="filterCategories">Категория:</label>
                 <Select
-                    id='filterCategories'
+                    id="filterCategories"
                     className={styles.select}
                     options={[
-                        {value: '', label: 'Все'},
-                        ...categoryOptions
+                        { value: '', label: 'Все' },
+                        ...categoryOptions,
                     ]}
                     value={filters.category.value}
                     onChange={(value) => onChange(value, 'category')}
-                    style={{width: 200}}
+                    style={{ width: 200 }}
                 />
             </div>
 
         </div>
-    );
-};
+    )
+}
 
-export default FilterPanel;
+export default FilterPanel

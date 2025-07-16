@@ -1,33 +1,34 @@
-import {Link, useNavigate} from "react-router-dom";
-import urls from "../../../../navigation/app.urls.ts";
-import {Input, Select, Button} from "antd";
+import { Link, useNavigate } from 'react-router-dom'
+import urls from 'navigation/app.urls'
+import { Input, Select, Button } from 'antd'
 import styles from './taskDetails.module.css'
-import type {ITask} from "../../../../types/global.ts";
-import {useContext} from "react";
-import TasksContext from "../../../../shared/tasksContext.ts";
-import {categoryOptions, priorityOptions, statusOptions} from "../../../../shared/constants.ts";
+import { ITask } from 'types/global'
+import { ChangeEvent, FormEvent, useContext } from 'react'
+import TasksContext from 'shared/tasksContext'
+import { categoryOptions, priorityOptions, statusOptions } from 'shared/constants'
 
 interface ITaskDetailsProps {
     task: ITask,
     setTask: (task: ITask) => void,
 }
 
-const TaskDetails = ({task, setTask}: ITaskDetailsProps) => {
-    const navigate = useNavigate();
-    const {tasks, setTasks} = useContext(TasksContext);
+const TaskDetails = ({ task, setTask }: ITaskDetailsProps) => {
+    const navigate = useNavigate()
+    const { tasks, setTasks } = useContext(TasksContext)
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const {value, name} = e.target
-        setTask({...task, [name]: value})
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { value, name } = e.target
+        setTask({ ...task, [name]: value })
     }
 
     const handleSelectChange = (value: string, name: string) => {
-        setTask({...task, [name]: value})
+        setTask({ ...task, [name]: value })
     }
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        setTasks(tasks.map(t => t.id === task.id ? task : t));
+        setTasks(tasks.map(t => t.id === task.id ? task : t))
         navigate(urls.main)
     }
 
@@ -37,35 +38,35 @@ const TaskDetails = ({task, setTask}: ITaskDetailsProps) => {
             <h2 className={styles.formTitle}>Task Details</h2>
             <form className={styles.form} onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
-                    <label className={styles.label} htmlFor='title'>Заголовок:</label>
+                    <label className={styles.label} htmlFor="title">Заголовок:</label>
                     <Input
                         id="title"
                         value={task.title}
-                        name='title'
+                        name="title"
                         onChange={handleChange}
                         className={styles.input}
                     />
                 </div>
 
                 <div className={styles.formGroup}>
-                    <label className={styles.label} htmlFor='description'>Описание:</label>
+                    <label className={styles.label} htmlFor="description">Описание:</label>
                     <Input.TextArea
                         value={task.description}
-                        id='description'
-                        name='description'
+                        id="description"
+                        name="description"
                         onChange={handleChange}
                         className={styles.textarea}
-                        style={{resize: 'none'}}
+                        style={{ resize: 'none' }}
                         rows={5}
                     />
                 </div>
 
                 <div className={styles.formRow}>
                     <div className={styles.formGroup}>
-                        <label className={styles.label} htmlFor='category'>Категория:</label>
+                        <label className={styles.label} htmlFor="category">Категория:</label>
                         <Select
                             value={task.category}
-                            id='category'
+                            id="category"
                             options={categoryOptions}
                             onChange={(value) => handleSelectChange(value, 'category')}
                             className={styles.select}
@@ -73,9 +74,9 @@ const TaskDetails = ({task, setTask}: ITaskDetailsProps) => {
                     </div>
 
                     <div className={styles.formGroup}>
-                        <label className={styles.label} htmlFor='status'>Статус:</label>
+                        <label className={styles.label} htmlFor="status">Статус:</label>
                         <Select
-                            id='status'
+                            id="status"
                             value={task.status}
                             options={statusOptions}
                             onChange={(value) => handleSelectChange(value, 'status')}
@@ -84,10 +85,10 @@ const TaskDetails = ({task, setTask}: ITaskDetailsProps) => {
                     </div>
 
                     <div className={styles.formGroup}>
-                        <label className={styles.label} htmlFor='priority'>Приоритет:</label>
+                        <label className={styles.label} htmlFor="priority">Приоритет:</label>
                         <Select
                             value={task.priority}
-                            id='priority'
+                            id="priority"
                             options={priorityOptions}
                             onChange={(value) => handleSelectChange(value, 'priority')}
                             className={styles.select}
@@ -105,7 +106,7 @@ const TaskDetails = ({task, setTask}: ITaskDetailsProps) => {
                 </div>
             </form>
         </div>
-    );
-};
+    )
+}
 
-export default TaskDetails;
+export default TaskDetails

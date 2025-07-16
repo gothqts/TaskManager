@@ -1,16 +1,16 @@
-import urls from "./app.urls.ts";
-import MainScreen from "../screens/MainScreen";
-import TaskScreen from "../screens/TaskScreen";
-import {createBrowserRouter} from "react-router-dom";
+import urls from './app.urls'
+import MainScreen from '../screens/MainScreen'
+import TaskScreen from '../screens/TaskScreen'
+import { createBrowserRouter } from 'react-router-dom'
 
 const appRouter = createBrowserRouter([
     {
         path: urls.main,
-        element: <MainScreen/>,
+        element: <MainScreen />,
     },
     {
         path: urls.task,
-        element: <TaskScreen/>,
-    }
+        element: <TaskScreen />,
+    },
 ])
-export default appRouter;
+export default appRouter

@@ -1,13 +1,13 @@
-import type {ITask} from "../../../../types/global.ts";
+import type { ITask } from 'types/global'
 import styles from './taskItem.module.css'
-import {Link} from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 interface ITaskItemProps {
     task: ITask;
 }
 
 const TaskItem = (props: ITaskItemProps) => {
-    const task = props.task;
+    const task = props.task
     return (
         <div className={styles.container}>
             <div className={styles.header}>
@@ -25,7 +25,7 @@ const TaskItem = (props: ITaskItemProps) => {
                 </Link>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default TaskItem;
+export default TaskItem

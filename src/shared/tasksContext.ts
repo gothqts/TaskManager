@@ -1,5 +1,5 @@
-import {createContext} from "react";
-import type {ITask} from "../types/global.ts";
+import { createContext } from 'react'
+import type { ITask } from 'types/global'
 
 interface IContext {
     tasks: ITask[],
@@ -11,6 +11,6 @@ const TasksContext = createContext<IContext>({
     tasks: [],
     setTasks: () => {
     },
-});
+})
 
-export default TasksContext;
+export default TasksContext

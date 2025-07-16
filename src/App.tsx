@@ -1,10 +1,11 @@
-import {RouterProvider} from "react-router-dom";
-import appRouter from "./navigation/app.router.tsx";
-import {useState} from "react";
-import TasksContext from "./shared/tasksContext.ts";
-import type {ITask} from "./types/global.ts";
+import { RouterProvider } from 'react-router-dom'
+import appRouter from 'navigation/app.router'
+import { useState } from 'react'
+import TasksContext from 'shared/tasksContext'
+import type { ITask } from 'types/global'
 
 const App = () => {
+
     const [tasks, setTasks] = useState<ITask[]>([
             {
                 id: '1',
@@ -12,7 +13,7 @@ const App = () => {
                 description: 'Add login and registration functionality',
                 status: 'In Progress',
                 category: 'Feature',
-                priority: 'High'
+                priority: 'High',
             },
             {
                 id: '2',
@@ -20,7 +21,7 @@ const App = () => {
                 description: 'Navbar overlaps content on mobile devices',
                 status: 'To Do',
                 category: 'Bug',
-                priority: 'Medium'
+                priority: 'Medium',
             },
             {
                 id: '3',
@@ -28,7 +29,7 @@ const App = () => {
                 description: 'Document all endpoints for the REST API',
                 status: 'Done',
                 category: 'Documentation',
-                priority: 'Medium'
+                priority: 'Medium',
             },
             {
                 id: '4',
@@ -36,7 +37,7 @@ const App = () => {
                 description: 'Improve performance of the old modules',
                 status: 'In Progress',
                 category: 'Refactor',
-                priority: 'High'
+                priority: 'High',
             },
             {
                 id: '5',
@@ -44,18 +45,18 @@ const App = () => {
                 description: 'Write tests for the utility functions',
                 status: 'To Do',
                 category: 'Test',
-                priority: 'Low'
+                priority: 'Low',
             },
 
-        ]
-    );
+        ],
+    )
 
     return (
-        <TasksContext value={{tasks: tasks, setTasks: setTasks}}>
-            <RouterProvider router={appRouter}/>
+        <TasksContext value={{ tasks: tasks, setTasks: setTasks }}>
+            <RouterProvider router={appRouter} />
         </TasksContext>
 
-    );
-};
+    )
+}
 
-export default App;
+export default App
