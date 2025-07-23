@@ -11,7 +11,6 @@
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
     "resolveJsonModule": true,
-
     /* Linting */
     "noUnusedParameters": true,
     "noUnusedLocals": true,
@@ -25,6 +24,7 @@
     "paths": {
       "assets/*": ["assets/*"],
       "navigation/*": ["navigation/*"],
+      "services/*": ["services/*"],
       "screens/*": ["screens/*"],
       "shared/*": ["shared/*"],
       "styles/*": ["styles/*"],

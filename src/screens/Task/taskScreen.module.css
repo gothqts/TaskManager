@@ -9,6 +9,10 @@
     padding-right: 10px;
 }
 
+.err_container {
+    font-size: 20px;
+
+}
 @media (max-width: 480px) {
     .container {
         height: 100%;
