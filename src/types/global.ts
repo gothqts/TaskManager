@@ -1,15 +1,15 @@
+import { Dayjs } from 'dayjs'
+
+
 export interface ITask {
     id: string,
     title: string,
     description?: string,
-    status: IStatus,
-    category: ICategory,
-    priority: IPriority,
+    status: 'To Do' | 'In Progress' | 'Done',
+    category: 'Bug' | 'Feature' | 'Documentation' | 'Refactor' | 'Test',
+    priority: 'Low' | 'Medium' | 'High',
+    createdAt: Dayjs,
 }
-
-export type IStatus = 'To Do' | 'In Progress' | 'Done'
-export type ICategory = 'Bug' | 'Feature' | 'Documentation' | 'Refactor' | 'Test'
-export type IPriority = 'Low' | 'Medium' | 'High'
 
 
 export interface IFilter {

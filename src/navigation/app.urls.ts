@@ -1,5 +1,7 @@
 const urls = {
     main: '/',
-    task: '/task/:id',
+    updateTask: '/task/:id',
+    createTask: '/task/new',
+
 }
 export default urls

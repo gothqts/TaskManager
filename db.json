@@ -1,0 +1,76 @@
+{
+  "tasks": [
+    {
+      "id": "1a2b3c4d-5678-90ef-ghij-klmnopqrstuv",
+      "title": "Задача 2",
+      "description": "Реализовать авторизацию пользователей",
+      "status": "To Do",
+      "category": "Feature",
+      "priority": "High",
+      "createdAt": "2025-07-22T09:15:00.000Z"
+    },
+    {
+      "id": "9a8b7c6d-5432-10fe-dcba-zyxwvutsrqpo",
+      "title": "Задача 4",
+      "description": "Оптимизировать загрузку изображений",
+      "status": "To Do",
+      "category": "Improvement",
+      "priority": "Medium",
+      "createdAt": "2025-07-30T19:00:00.000Z"
+    },
+    {
+      "id": "0f9e8d7c-6b5a-4938-7210-fedcba987654",
+      "title": "Задача 5",
+      "description": "Добавить фильтрацию данных в таблице",
+      "status": "To Do",
+      "category": "Feature",
+      "priority": "High",
+      "createdAt": "2025-07-23T16:45:30.750Z"
+    },
+    {
+      "id": "a1b2c3d4-e5f6-7890-ghij-klmnop123456",
+      "title": "Задача 6",
+      "description": "Обновить документацию API",
+      "status": "Done",
+      "category": "Documentation",
+      "priority": "Low",
+      "createdAt": "2025-07-24T10:00:15.300Z"
+    },
+    {
+      "id": "b2c3d4e5-f6g7-8901-hijk-lmnopq789012",
+      "title": "Задача 7",
+      "description": "Рефакторинг кода модуля платежей",
+      "status": "In Progress",
+      "category": "Refactoring",
+      "priority": "Medium",
+      "createdAt": "2025-07-24T13:25:40.600Z"
+    },
+    {
+      "id": "c3d4e5f6-g7h8-9012-ijkl-mnopqr345678",
+      "title": "Задача 8",
+      "description": "Добавить тесты для компонента формы",
+      "status": "To Do",
+      "category": "Testing",
+      "priority": "High",
+      "createdAt": "2025-07-25T08:50:20.900Z"
+    },
+    {
+      "id": "d4e5f6g7-h8i9-0123-jklm-nopqrs567890",
+      "title": "Задача 9",
+      "description": "Исправить ошибку в логике расчётов",
+      "status": "In Progress",
+      "category": "Bug",
+      "priority": "Critical",
+      "createdAt": "2025-07-25T12:15:35.100Z"
+    },
+    {
+      "id": "e5f6g7h8-i9j0-1234-klmn-opqrst678901",
+      "title": "Задача 10",
+      "description": "Добавить поддержку темной темы",
+      "status": "To Do",
+      "category": "Feature",
+      "priority": "Medium",
+      "createdAt": "2025-07-26T15:40:50.400Z"
+    }
+  ]
+}

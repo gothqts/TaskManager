@@ -1,16 +1,22 @@
 import urls from './app.urls'
-import MainScreen from '../screens/MainScreen'
-import TaskScreen from '../screens/TaskScreen'
+import Main from '../screens/Main'
 import { createBrowserRouter } from 'react-router-dom'
+import CreateTask from 'screens/Task/pages/CreateTask'
+import UpdateTask from 'screens/Task/pages/UpdateTask'
 
 const appRouter = createBrowserRouter([
     {
         path: urls.main,
-        element: <MainScreen />,
+        element: <Main/>,
     },
     {
-        path: urls.task,
-        element: <TaskScreen />,
+        path: urls.createTask,
+        element: <CreateTask />,
+    },
+    {
+        path: urls.updateTask,
+        element: <UpdateTask />,
+
     },
 ])
 export default appRouter

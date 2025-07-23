@@ -1,0 +1,64 @@
+.container {
+    display: flex;
+    width: 100%;
+    gap: 16px;
+    padding: 16px 24px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    align-items: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e0e0e0;
+    flex-wrap: wrap;
+}
+
+.searchInput {
+    flex: 1;
+    min-width: 200px;
+    max-width: 320px;
+    border-radius: 6px;
+}
+
+.selectGroup {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    flex: 2;
+}
+
+.selectContainer {
+    flex: 1;
+    min-width: 180px;
+}
+
+.select {
+    width: 100% !important;
+}
+
+.select :global(.ant-select-selector) {
+    border-radius: 6px !important;
+}
+
+
+@media (max-width: 992px) {
+    .container {
+        gap: 12px;
+    }
+
+    .selectGroup {
+        flex: 1 1 100%;
+    }
+
+    .searchInput {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 12px;
+    }
+
+    .selectContainer {
+        min-width: 100%;
+    }
+}
