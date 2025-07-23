@@ -14,6 +14,7 @@ import LoaderPage from 'shared/LoaderPage'
 import { SearchOutlined } from '@ant-design/icons'
 import dayjs from 'dayjs'
 import DateToggler from 'shared/Buttons/DateToggler'
+import { tasksAtom } from 'screens/Main/main.atom'
 
 const MainScreen = () => {
     const [tasks, setTasks] = useAtom(tasksAtom)
