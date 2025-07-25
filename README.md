@@ -2,7 +2,6 @@
 
 ## Запуск приложения:
     yarn install
-    npx json-server db.json
     yarn dev
 ## Стек:
 - React
@@ -30,7 +29,6 @@
         ├── styles/ - глобальные стили
         ├── types/ - глобальные типы
         ├── App.tsx
-        ├── db.json - имитация backend`а
         ├── tsconfig.ts - настройки TS
         ├── vite-env.d.ts
         └── main.tsx
