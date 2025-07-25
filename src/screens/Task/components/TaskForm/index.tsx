@@ -59,7 +59,7 @@ const TaskDetails = (props: ITaskFormProps) => {
                                 message: 'Заголовок должен содержать минимум 5 символов',
                             },
                             maxLength: {
-                                value: 25,
+                                value: 40,
                                 message: 'Заголовок должен быть не длиннее 25 символов',
                             },
                         }}

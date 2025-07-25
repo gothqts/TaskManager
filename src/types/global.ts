@@ -17,7 +17,7 @@ export interface IFilter {
     label: string;
 }
 
-export type IFilters = {
+export interface IFilters {
     status: IFilter,
     priority: IFilter,
     category: IFilter,

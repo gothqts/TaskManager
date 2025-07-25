@@ -2,20 +2,17 @@ import { Button } from 'antd'
 import { SortAscendingOutlined, SortDescendingOutlined } from '@ant-design/icons'
 
 interface IProps {
-    setSortOrder: (order: 'asc' | 'desc') => void,
+    onClick: () => void
     sortOrder: 'asc' | 'desc'
 }
 
-const DateToggler = ({ sortOrder, setSortOrder }: IProps) => {
+const DateToggler = ({ sortOrder, onClick }: IProps) => {
 
-    const toggleSortOrder = () => {
-        setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')
-    }
 
     return (
 
         <Button
-            onClick={toggleSortOrder}
+            onClick={onClick}
             icon={sortOrder === 'asc' ? <SortAscendingOutlined /> : <SortDescendingOutlined />}
         >
             Сортировать по дате {sortOrder === 'asc' ? '↑' : '↓'}
