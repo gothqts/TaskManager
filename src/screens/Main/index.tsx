@@ -1,57 +1,51 @@
 import styles from './mainScreen.module.css'
 import TaskList from './components/TaskList'
 import FilterPanel from './components/FilterPanel'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react' // Добавлен useMemo
 import { initialFilterState } from 'shared/constants'
 import { IFilters } from 'types/global'
 import useHttpLoaderWithServerErr from 'shared/hooks/httpLoader/useHttpLoaderWithServerErr'
 import { mainApi } from 'screens/Main/main.api'
 import urls from 'navigation/app.urls'
 import { Link } from 'react-router-dom'
-import { Button, Input } from 'antd'
+import { Button, Input, Empty } from 'antd'
 import { useAtom } from 'jotai'
-import LoaderPage from 'shared/LoaderPage'
 import { SearchOutlined } from '@ant-design/icons'
 import dayjs from 'dayjs'
 import DateToggler from 'shared/Buttons/DateToggler'
 import { tasksAtom } from 'screens/Main/main.atom'
+import ThreeDotsLoader from 'shared/LoaderPage/ThreeDotsLoader'
+import useDebounce from 'shared/hooks/useDebounce'
 
 const MainScreen = () => {
     const [tasks, setTasks] = useAtom(tasksAtom)
-    const [filteredTasks, setFilteredTasks] = useState(tasks)
     const [filters, setFilters] = useState<IFilters>(initialFilterState)
     const [search, setSearch] = useState<string>('')
-    const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
+    const debouncedSearch: string = useDebounce(search, 300)
     const { wait, loading } = useHttpLoaderWithServerErr()
+    const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
 
     useEffect(() => {
-        wait(mainApi.loadTasks(), (resp) => {
+        const params = {
+            title: debouncedSearch,
+            status: filters.status.value,
+            priority: filters.priority.value,
+            category: filters.category.value,
+        }
+        wait(mainApi.loadTasks(params), (resp) => {
             if (resp.status === 'success') {
                 setTasks(resp.body)
             }
         })
-    }, [])
+    }, [filters, debouncedSearch])
 
-    useEffect(() => {
-        let filtered = tasks.filter(task => {
-            const searchMatch = task.title.toLowerCase().includes(search.toLowerCase())
-            const statusMatch = !filters.status.value || task.status === filters.status.value
-            const priorityMatch = !filters.priority.value || task.priority === filters.priority.value
-            const categoryMatch = !filters.category.value || task.category === filters.category.value
-
-            return statusMatch && priorityMatch && categoryMatch && searchMatch
-        })
-
-        // Сортировка по дате
-        filtered = filtered.sort((a, b) => {
+    const sortedTasks = useMemo(() => {
+        return [...tasks].sort((a, b) => {
             const dateA = dayjs(a.createdAt).valueOf()
             const dateB = dayjs(b.createdAt).valueOf()
-            console.log(dateA, dateB)
             return sortOrder === 'asc' ? dateA - dateB : dateB - dateA
         })
-
-        setFilteredTasks(filtered)
-    }, [tasks, filters, search, sortOrder])
+    }, [tasks, sortOrder])
 
     const handleChange = (value: string, name: keyof IFilters) => {
         setFilters((prev) => ({
@@ -63,17 +57,27 @@ const MainScreen = () => {
         }))
     }
 
-    if (loading) {
-        return <LoaderPage />
+    const toggleSortOrder = () => {
+        setSortOrder((prev) => (prev === 'asc' ? 'desc' : 'asc'))
     }
+
+    const renderTasks = () => {
+        if (loading) {
+            return <ThreeDotsLoader />
+        } else if (sortedTasks.length > 0) {
+            return <TaskList filteredTasks={sortedTasks} />
+        } else {
+            return <Empty description='Упс, по вашему запросу ничего не найдено' image={Empty.PRESENTED_IMAGE_SIMPLE} />
+        }
+    }
+
     return (
         <div className={styles.container}>
             <h1 className={styles.title}>Task Manager</h1>
-
             <Input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Поиск по названию"
+                placeholder='Поиск по названию'
                 allowClear
                 className={styles.searchInput}
                 prefix={<SearchOutlined />}
@@ -82,16 +86,13 @@ const MainScreen = () => {
             <FilterPanel filters={filters} onChange={handleChange} />
 
             <div className={styles.actions}>
-                <DateToggler sortOrder={sortOrder} setSortOrder={setSortOrder} />
+                <DateToggler onClick={toggleSortOrder} sortOrder={sortOrder} />
                 <Link to={urls.createTask} className={styles.createTaskLink}>
-                    <Button type="primary">Создать задачу</Button>
+                    <Button type='primary'>Создать задачу</Button>
                 </Link>
             </div>
 
-            {filteredTasks.length > 0 ? (
-                <TaskList filteredTasks={filteredTasks} />
-            ) : <div className={styles.emptyTasks}>Упс, задач с указанными фильтрами не найдено.</div>}
-
+            {renderTasks()}
         </div>
     )
 }
